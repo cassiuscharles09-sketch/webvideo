@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Vlog — Day 1-3</title>
+    <meta name="description" content="A daily vlog series compiled into one continuous video. Watch every day unfold.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,500&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f5f0eb;
+            font-family: 'DM Sans', sans-serif;
+            color: #2c2c2c;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: #fff;
+            border-bottom: 2px solid #2c2c2c;
+            padding: 0 24px;
+            display: flex;
+            align-items: stretch;
+            height: 60px;
+            flex-shrink: 0;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-right: 24px;
+            border-right: 2px solid #2c2c2c;
+        }
+
+        .header-icon {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #2c2c2c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+        .header-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            margin-left: auto;
+        }
+
+        .header-nav a {
+            padding: 0 16px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            font-weight: 500;
+            color: #2c2c2c;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-left: 1px solid #e0dbd5;
+            transition: background 0.2s;
+        }
+
+        .header-nav a:hover {
+            background: #f5f0eb;
+        }
+
+        .header-nav a.current {
+            background: #2c2c2c;
+            color: #fff;
+        }
+
+        /* ===== MARQUEE STRIP ===== */
+        .marquee-strip {
+            background: #2c2c2c;
+            color: #f5f0eb;
+            padding: 6px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .marquee-inner {
+            display: inline-block;
+            animation: scroll-left 30s linear infinite;
+        }
+
+        .marquee-inner span {
+            margin-right: 60px;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ===== CONTENT LAYOUT ===== */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 260px 1fr 260px;
+            flex: 1;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        /* ===== LEFT COLUMN ===== */
+        .col-left {
+            background: #fff;
+            border-right: 2px solid #2c2c2c;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            overflow-y: auto;
+        }
+
+        .col-section {
+            padding: 14px 0;
+            border-bottom: 1px solid #e0dbd5;
+        }
+
+        .col-section:first-child {
+            padding-top: 0;
+        }
+
+        .col-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .day-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1;
+            color: #2c2c2c;
+        }
+
+        .day-label {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+            font-style: italic;
+        }
+
+        .info-row {
+            margin-bottom: 10px;
+        }
+
+        .info-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .info-title {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #2c2c2c;
+            margin-bottom: 2px;
+        }
+
+        .info-text {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.45;
+        }
+
+        .info-text.placeholder {
+            font-style: italic;
+            color: #aaa;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tag {
+            padding: 3px 10px;
+            font-size: 10px;
+            font-weight: 500;
+            border: 1.5px solid #2c2c2c;
+            border-radius: 100px;
+            color: #2c2c2c;
+            background: transparent;
+            transition: all 0.2s;
+            cursor: default;
+        }
+
+        .tag:hover {
+            background: #2c2c2c;
+            color: #fff;
+        }
+
+        /* ===== MAIN COLUMN ===== */
+        .col-main {
+            background: #f5f0eb;
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .main-heading {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .main-date {
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Video area */
+        .video-frame {
+            position: relative;
+            width: 100%;
+            flex: 1;
+            min-height: 0;
+            background: #000;
+            border: 2px solid #2c2c2c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+
+        .video-frame video,
+        .video-frame iframe {
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+            border: none;
+        }
+
+        .video-frame:hover {
+            box-shadow: 6px 6px 0 #2c2c2c;
+        }
+
+        .video-inner {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .play-circle {
+            width: 60px;
+            height: 60px;
+            border: 3px solid #2c2c2c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            transition: all 0.3s;
+        }
+
+        .video-frame:hover .play-circle {
+            background: #2c2c2c;
+        }
+
+        .video-frame:hover .play-circle svg {
+            fill: #fff;
+            stroke: #fff;
+        }
+
+        .play-circle svg {
+            margin-left: 3px;
+            fill: #2c2c2c;
+            stroke: #2c2c2c;
+            transition: all 0.3s;
+        }
+
+        .video-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #999;
+            margin-bottom: 4px;
+        }
+
+        .video-subtext {
+            font-size: 11px;
+            color: #bbb;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Corner decorations on video frame */
+        .video-frame::before,
+        .video-frame::after {
+            content: '+';
+            position: absolute;
+            font-size: 16px;
+            color: #ccc;
+            font-weight: 300;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .video-frame::before {
+            top: 10px;
+            left: 12px;
+        }
+
+        .video-frame::after {
+            bottom: 10px;
+            right: 12px;
+        }
+
+        /* Caption bar under video */
+        .caption-bar {
+            background: #fff;
+            border: 2px solid #2c2c2c;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .caption-text {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .caption-duration {
+            font-size: 12px;
+            font-weight: 700;
+            color: #2c2c2c;
+            letter-spacing: 1px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ===== RIGHT COLUMN ===== */
+        .col-right {
+            background: #fff;
+            border-left: 2px solid #2c2c2c;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            overflow-y: auto;
+        }
+
+        /* Entries list */
+        .entry-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .entry-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0dbd5;
+            cursor: pointer;
+            transition: padding-left 0.2s;
+        }
+
+        .entry-item:hover {
+            padding-left: 4px;
+        }
+
+        .entry-item:last-child {
+            border-bottom: none;
+        }
+
+        .entry-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2c2c2c;
+            min-width: 28px;
+        }
+
+        .entry-item.active .entry-num {
+            color: #fff;
+            background: #2c2c2c;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+        .entry-details {
+            flex-grow: 1;
+        }
+
+        .entry-title {
+            font-size: 13px;
+            font-weight: 500;
+            color: #2c2c2c;
+        }
+
+        .entry-date {
+            font-size: 10px;
+            color: #aaa;
+            margin-top: 2px;
+        }
+
+        .entry-time {
+            font-size: 10px;
+            color: #bbb;
+        }
+
+        /* Socials */
+        .social-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0dbd5;
+            font-size: 12px;
+            font-weight: 500;
+            color: #2c2c2c;
+            text-decoration: none;
+            transition: padding-left 0.2s;
+        }
+
+        .social-item:last-child {
+            border-bottom: none;
+        }
+
+        .social-item:hover {
+            padding-left: 4px;
+        }
+
+        .social-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .social-dot.red {
+            background: #e74c3c;
+        }
+
+        .social-dot.pink {
+            background: #e84393;
+        }
+
+        .social-dot.dark {
+            background: #2c2c2c;
+        }
+
+        .social-dot.blue {
+            background: #3b82f6;
+        }
+
+        /* Note box */
+        .note-box {
+            background: #f5f0eb;
+            border: 1.5px dashed #ccc;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .note-box p {
+            font-size: 12px;
+            color: #888;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .note-box p em {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #666;
+        }
+
+        .note-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 2px solid #2c2c2c;
+            background: transparent;
+            color: #2c2c2c;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            transition: all 0.2s;
+        }
+
+        .note-btn:hover {
+            background: #2c2c2c;
+            color: #fff;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #2c2c2c;
+            color: #f5f0eb;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .footer span:last-child {
+            font-style: italic;
+            text-transform: none;
+            letter-spacing: 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 100px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="header-left">
+            <div class="header-icon">▶</div>
+            <div class="header-name">Daily Vlog</div>
+        </div>
+        <nav class="header-nav" id="nav">
+            <a href="#" class="current">Today</a>
+            <a href="#">Archive</a>
+            <a href="#">Highlights</a>
+            <a href="#">About</a>
+        </nav>
+    </header>
+
+    <!-- MARQUEE -->
+    <div class="marquee-strip">
+        <div class="marquee-inner">
+            <span>Daily Vlog Day 1-3</span>
+            <span>•</span>
+            <span>One video — every day documented</span>
+            <span>•</span>
+            <span>Watch the journey unfold</span>
+            <span>•</span>
+            <span>New entries added daily</span>
+            <span>•</span>
+            <span>Daily Vlog Day 1-3</span>
+            <span>•</span>
+            <span>One video — every day documented</span>
+            <span>•</span>
+            <span>Watch the journey unfold</span>
+            <span>•</span>
+            <span>New entries added daily</span>
+            <span>•</span>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-wrapper">
+
+        <!-- LEFT: Info -->
+        <div class="col-left" id="sidebar-info">
+
+            <div class="col-section">
+                <div class="section-label">Entry</div>
+                <div class="day-number">1–3</div>
+                <div class="day-label">Daily Vlog Compilation</div>
+            </div>
+
+            <div class="col-section">
+                <div class="section-label">Details</div>
+
+                <div class="info-row">
+                    <div class="info-title">Date</div>
+                    <div class="info-text">August, 2026</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-title">Summary</div>
+                    <div class="info-text placeholder">Describe what happens across these days — the highlights, the
+                        little moments, the vibes.</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-title">Location</div>
+                    <div class="info-text placeholder">Bahay, Taguig, Gym, School, Karuhatan, Sta Quiteria</div>
+                </div>
+
+                <div class="info-row">
+                    <div class="info-title">People:</div>
+                    <div class="info-text placeholder">Friends </div>
+                </div>
+            </div>
+
+            <div class="col-section">
+                <div class="section-label">Tags</div>
+                <div class="tag-row">
+                    <span class="tag">chill day</span>
+                    <span class="tag">food trip</span>
+                    <span class="tag">lakad</span>
+                    <span class="tag">friends</span>
+                    <span class="tag">night out</span>
+                    <span class="tag">gym</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CENTER: Video -->
+        <main class="col-main" id="main-content">
+
+            <div class="main-heading">
+                <h1 class="main-title">Today's Vlog</h1>
+                <span class="main-date">Day 1–3 • Jul 2026</span>
+            </div>
+
+            <div class="video-frame" id="video-player" style="padding: 0;">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/aivZqwj8hiQ" title="Daily Vlog" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="display:block; border:0; width:100%; height:100%;"></iframe>
+            </div>
+
+            <div class="caption-bar">
+                <span class="caption-text">"Every day's a story worth telling."</span>
+            </div>
+
+        </main>
+
+        <!-- RIGHT: Entries & Links -->
+        <div class="col-right" id="sidebar-entries">
+
+            <div class="col-section">
+                <div class="section-label">All Entries</div>
+                <div class="entry-list">
+
+                    <div class="entry-item active">
+                        <span class="entry-num">1</span>
+                        <div class="entry-details">
+                            <div class="entry-title">First Day</div>
+                            <div class="entry-date">Aug 9, 2026</div>
+                        </div>
+                        <span class="entry-time">--:--</span>
+                    </div>
+
+                    <div class="entry-item">
+                        <span class="entry-num">2</span>
+                        <div class="entry-details">
+                            <div class="entry-title">Day Two</div>
+                            <div class="entry-date">Aug 11, 2026</div>
+                        </div>
+                        <span class="entry-time">--:--</span>
+                    </div>
+
+                    <div class="entry-item">
+                        <span class="entry-num">3</span>
+                        <div class="entry-details">
+                            <div class="entry-title">Day Three</div>
+                            <div class="entry-date">Aug 13, 2026</div>
+                        </div>
+                        <span class="entry-time">--:--</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-section">
+                <div class="section-label">Socials</div>
+                <div class="social-row">
+
+                    <a class="social-item" href="https://www.instagram.com/ccharlesm__/">
+                        <span class="social-dot pink"></span> Instagram
+                    </a>
+
+                    <a class="social-item" href="https://www.facebook.com/ccharlesm">
+                        <span class="social-dot blue"></span> Facebook
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-section">
+                <div class="note-box">
+                    <p>Enjoy the daily vlogs?<br><em>Don't miss a single day.</em></p>
+                    <button class="note-btn" id="subscribe-btn">Subscribe</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+        <span>Made by: Cassius Charles Trajano</span>
+    </footer>
+
+</body>
+
+</html>
