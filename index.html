@@ -581,22 +581,100 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar {
-            width: 5px;
+        /* ===== RESPONSIVE MEDIA QUERIES ===== */
+        @media (max-width: 900px) {
+            body {
+                height: auto;
+                min-height: 100vh;
+                overflow-y: auto;
+            }
+
+            .header {
+                height: auto;
+                padding: 12px 16px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .header-left {
+                border-right: none;
+                padding-right: 0;
+            }
+
+            .header-nav {
+                width: 100%;
+                overflow-x: auto;
+                justify-content: flex-start;
+                border-top: 1px solid #e0dbd5;
+                padding-top: 10px;
+            }
+
+            .header-nav a {
+                padding: 6px 14px;
+                font-size: 11px;
+                border: 1.5px solid #2c2c2c;
+                border-radius: 4px;
+                margin-right: 6px;
+                height: 32px;
+            }
+
+            .content-wrapper {
+                display: flex;
+                flex-direction: column;
+                overflow: visible;
+            }
+
+            /* Show video at the top on mobile/tablet */
+            .col-main {
+                order: 1;
+                padding: 16px;
+                overflow: visible;
+            }
+
+            .video-frame {
+                aspect-ratio: 16 / 9;
+                min-height: 220px;
+                height: auto;
+            }
+
+            .col-left {
+                order: 2;
+                border-right: none;
+                border-top: 2px solid #2c2c2c;
+                padding: 18px 16px;
+                overflow: visible;
+            }
+
+            .col-right {
+                order: 3;
+                border-left: none;
+                border-top: 2px solid #2c2c2c;
+                padding: 18px 16px;
+                overflow: visible;
+            }
+
+            .footer {
+                padding: 14px 16px;
+                flex-direction: column;
+                gap: 6px;
+                text-align: center;
+            }
         }
 
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 19px;
+            }
 
-        ::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 100px;
-        }
+            .day-number {
+                font-size: 32px;
+            }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: #999;
+            .caption-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
         }
     </style>
 </head>
